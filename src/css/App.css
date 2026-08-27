@@ -1,0 +1,32 @@
+@font-face {
+    font-family: "PloniB";
+    src: url("/ploni-bold-aaa.otf");
+}
+
+@font-face {
+    font-family: "Ploni";
+    src: url("/ploni-regular-aaa.otf");
+}
+
+* {
+    direction: rtl;
+    font-family: "Ploni";
+  }
+
+html,
+body,
+#root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+html {
+    font-size: calc(1vh + 0.5vw);
+}
+
+::selection {
+    color: white;
+    background-color: #e77f1e;
+  }

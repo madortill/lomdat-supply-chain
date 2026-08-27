@@ -1,0 +1,521 @@
+.opening-page {
+    width: 100vw;
+    height: 100vh;
+
+    background-image: url("../../assets/background.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative;
+    overflow: hidden;
+
+    direction: rtl;
+}
+
+/* שכבה כהה + blur על הרקע */
+.opening-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.39);
+    backdrop-filter: blur(2px);
+
+    z-index: 1;
+}
+
+/* =========================
+   לוגו טי"ל
+========================= */
+
+.til-logo {
+    position: absolute;
+
+    top: 1.2rem;
+    left: 1.2rem;
+
+    width: 5rem;
+    height: auto;
+
+    z-index: 3;
+
+    user-select: none;
+    -webkit-user-select: none;
+
+    -webkit-user-drag: none;
+
+    pointer-events: none;
+}
+
+/* =========================
+   התוכן המרכזי
+========================= */
+
+.opening-content {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    z-index: 2;
+}
+
+/* =========================
+   לוגו בה"ד 6
+========================= */
+
+.bahad6-logo-opening-page {
+    width: 12rem;
+    height: auto;
+
+    margin-bottom: -1vh;
+
+    user-select: none;
+    -webkit-user-select: none;
+
+    -webkit-user-drag: none;
+
+    pointer-events: none;
+}
+
+/* =========================
+   טקסט
+========================= */
+
+.opening-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 0.4rem;
+
+    margin-bottom: 2.2rem;
+}
+
+.opening-welcome {
+    margin: 0;
+
+    color: #FFF5BA;
+
+    font-size: 1.7rem;
+    font-weight: 700;
+    font-family: "PloniB";
+
+    /* text-shadow:
+        0 0.15rem 0.2rem rgba(0, 0, 0, 0.65); */
+}
+
+.opening-title {
+    margin: 0;
+
+    color: #FDC754;
+
+    font-size: 2.4rem;
+    font-weight: 800;
+    font-family: "PloniB";
+
+    white-space: nowrap;
+
+    /* text-shadow:
+        0 0.2rem 0.25rem rgba(0, 0, 0, 0.7); */
+}
+
+/* =========================
+   כפתור התחלת הלומדה
+========================= */
+
+.opening-start-btn {
+    border: none;
+    outline: none;
+
+    padding: 0.3rem 1.7rem;
+
+    border-radius: 1.3rem;
+
+    background: #2EAAD7;
+    color: white;
+
+    font-size: 1.15rem;
+    font-family: "Ploni";
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 1.2rem rgba(45, 183, 229, 0.65),
+        0 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.opening-start-btn:hover {
+    transform: scale(1.05);
+
+    background: #43c4ee;
+
+    box-shadow:
+        0 0 1.6rem rgba(45, 183, 229, 0.85),
+        0 0.35rem 0.6rem rgba(0, 0, 0, 0.35);
+}
+
+
+.opening-start-btn:active {
+    transform: scale(0.98);
+}
+
+/* =====================================
+   חלונית הוראות
+===================================== */
+
+.instructions-modal {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 35rem;
+    max-height: 82vh;
+
+    padding: 2rem 2.6rem;
+
+    background: #FFF5BA;
+
+    border: 0.15rem solid #2E86A6;
+    border-radius: 1rem;
+
+    box-shadow:
+        0 0 1.5rem rgba(46, 170, 215, 0.705),
+        0 0.4rem 1rem rgba(0, 0, 0, 0.25);
+
+    z-index: 5;
+
+    direction: rtl;
+    color: #2E86A6;
+
+    box-sizing: border-box;
+}
+
+/* =====================================
+   כותרת
+===================================== */
+
+.instructions-title {
+    margin: 0 0 1.4rem;
+
+    color: #2E86A6;
+
+    font-family: "PloniB";
+    font-size: 2rem;
+
+    text-align: center;
+}
+
+/* =====================================
+   מעטפת כל תוכן ההוראות
+===================================== */
+
+.instructions-content {
+    width: 90%;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+
+    direction: rtl;
+}
+
+/* =====================================
+   אזור עליון
+===================================== */
+
+.instructions-main {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 1.5rem;
+
+    margin-bottom: 1.6rem;
+
+    text-align: right;
+}
+
+.instructions-text {
+    color: #2E86A6;
+
+    font-family: "Ploni";
+    font-size: 1.1rem;
+    line-height: 1.45;
+
+    text-align: right;
+}
+
+.instructions-text p {
+    margin: 0;
+}
+
+.instructions-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* בוקסי הקופסה */
+
+.instructions-character {
+    flex-shrink: 0;
+    user-select: none;
+    -webkit-user-select: none;
+
+    -webkit-user-drag: none;
+
+    pointer-events: none;
+}
+
+.instructions-character-img {
+    width: 8rem;
+    height: auto;
+
+    display: block;
+
+    user-select: none;
+    -webkit-user-select: none;
+
+    -webkit-user-drag: none;
+
+    pointer-events: none;
+}
+
+/* =====================================
+   טקסט + דוגמאות כפתורים
+===================================== */
+
+.instractions-buttons-div {
+    width: 100%;
+}
+
+.instractions-buttons-div>p {
+    width: 100%;
+
+    margin: 0;
+
+    font-family: "Ploni";
+    font-size: 1.1rem;
+    line-height: 1.45;
+
+    text-align: right;
+}
+
+/* =====================================
+   דוגמאות כפתורי הבא / הקודם
+===================================== */
+
+.instructions-buttons-example {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    gap: 1.2rem;
+
+    margin: 1.2rem 0 1.8rem;
+}
+
+.instruction-button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 0.3rem;
+}
+
+.instruction-button-wrapper span {
+    font-family: "Ploni";
+    font-size: 0.85rem;
+
+    text-align: center;
+    line-height: 1.2;
+}
+
+.example-btn {
+    border: none;
+
+    min-width: 6.2rem;
+    padding: 0.35rem 1rem;
+
+    border-radius: 1rem;
+
+    background: #2EAAD7;
+    color: white;
+
+    font-family: "PloniB";
+    font-size: 1.25rem;
+}
+
+.disabled-example {
+    background: #AEB7B2;
+}
+
+.back {
+    background: #2E86A6;
+}
+
+
+/* =====================================
+   חלק תחתון
+===================================== */
+
+.instructions-bottom {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 2.5rem;
+}
+
+
+.instructions-menu-demo {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.4rem;
+
+    flex-shrink: 0;
+
+    user-select: none;
+    -webkit-user-select: none;
+
+    -webkit-user-drag: none;
+
+    pointer-events: none;
+}
+
+
+.instruction-menu-img {
+    width: 13rem;
+    height: auto;
+
+    display: block;
+}
+
+
+/* =====================================
+   Glow לנושא הנוכחי בתפריט
+===================================== */
+
+.menu-item-2 {
+    filter:
+        drop-shadow(0 0 0.3rem rgba(253, 199, 84, 0.85)) drop-shadow(0 0 0.7rem rgba(253, 199, 84, 0.55));
+}
+
+
+.instructions-bottom-text {
+    margin: 0;
+
+    font-family: "Ploni";
+    font-size: 1.1rem;
+
+    line-height: 1.4;
+
+    text-align: right;
+}
+
+
+/* =====================================
+   כפתורי ניווט אמיתיים של העמוד
+===================================== */
+
+.opening-page-next-btn,
+.opening-page-back-btn {
+    position: absolute;
+
+    bottom: 1.2rem;
+
+    z-index: 10;
+
+    border: none;
+    outline: none;
+
+    min-width: 6rem;
+    padding: 0.35rem 1.2rem;
+
+    border-radius: 1.2rem;
+
+    color: white;
+
+    font-family: "PloniB";
+    font-size: 1.2rem;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* הבא - שמאל למטה */
+
+.opening-page-next-btn {
+    left: 1.5rem;
+
+    background: #2EAAD7;
+
+    box-shadow:
+        0 0 0.8rem rgba(46, 170, 215, 0.45);
+}
+
+
+.opening-page-next-btn:hover {
+    transform: scale(1.05);
+
+    background: #43C4EE;
+
+    box-shadow:
+        0 0 1rem rgba(46, 170, 215, 0.65);
+}
+
+
+/* הקודם - ימין למטה */
+
+.opening-page-back-btn {
+    right: 1.5rem;
+
+    background: #2E86A6;
+
+    box-shadow:
+        0 0 0.8rem rgba(46, 134, 166, 0.45);
+}
+
+
+.opening-page-back-btn:hover {
+    transform: scale(1.05);
+
+    background: #3798BB;
+
+    box-shadow:
+        0 0 1rem rgba(46, 134, 166, 0.65);
+}
+
+
+.opening-page-next-btn:active,
+.opening-page-back-btn:active {
+    transform: scale(0.98);
+}
