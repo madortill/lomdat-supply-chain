@@ -5,7 +5,7 @@ import "./LearningPage.css";
 import data from "../../data/data.json";
 
 import PageRenderer from "../../components/PageRenderer/PageRenderer";
-import Navbar from "../../components/Navbar/NavBar";
+import Navbar from "../../components/NavBar/NavBar";
 
 import til from "../../assets/til-glow.svg";
 import bahad6 from "../../assets/logo-glow.svg";
