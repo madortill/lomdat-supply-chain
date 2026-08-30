@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./OpeningPage.css";
 
 import bahad6 from "../../assets/logo-glow.svg";
@@ -10,12 +11,9 @@ import menuItem2 from "../../assets/menu-item-2.svg";
 import menuItem3 from "../../assets/menu-item-3.svg";
 
 function OpeningPage() {
-  const [showInstructions, setShowInstructions] = useState(false);
+  const navigate = useNavigate();
 
-  const handleNext = () => {
-    // בהמשך נחבר כאן מעבר לקומפוננטה הבאה
-    console.log("עוברים לעמוד הבא");
-  };
+  const [showInstructions, setShowInstructions] = useState(false);
 
   return (
     <div className="opening-page">
@@ -155,7 +153,7 @@ function OpeningPage() {
               כפתורי ניווט של העמוד
           ========================= */}
 
-          <button className="opening-page-next-btn" onClick={handleNext}>
+          <button className="opening-page-next-btn" onClick={() => navigate("/learning")}>
             הבא &gt;
           </button>
 

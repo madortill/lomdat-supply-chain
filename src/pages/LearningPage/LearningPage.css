@@ -1,0 +1,143 @@
+.learning-page {
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    direction: rtl;
+
+    background-image: url("../../assets/background.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* שכבת ההכהיה על המחסן */
+
+.learning-page::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.39);
+
+    z-index: 0;
+}
+
+
+/* כל התוכן צריך להיות מעל שכבת ההכהיה */
+
+.learning-content {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 1;
+}
+
+
+/* =============================
+   לוגואים
+============================= */
+
+.learning-logos {
+    position: absolute;
+
+    left: 1rem;
+
+    z-index: 10;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 0.5rem;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+}
+
+
+.learning-bahad-logo {
+    position: absolute;
+    left: 0.1rem;
+    top: 0.1rem;
+    width: 6.5rem;
+    height: auto;
+}
+
+
+.learning-til-logo {
+    position: absolute;
+    left: 5.2rem;
+    top: 1.4rem;
+    width: 5rem;
+    height: auto;
+
+    /* z-index: 3; */
+}
+
+
+/* =============================
+   כפתורי ניווט
+============================= */
+
+.learning-nav-btn {
+    position: absolute;
+
+    bottom: 1.2rem;
+
+    border: none;
+    outline: none;
+
+    padding: 0.35rem 1.25rem;
+
+    border-radius: 1rem;
+
+    background: #2EAAD7;
+    color: white;
+
+    font-family: "PloniB";
+    font-size: 1.2rem;
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.learning-nav-btn:hover:not(:disabled) {
+    transform: scale(1.05);
+
+    background: #43C4EE;
+}
+
+
+.learning-nav-btn:disabled {
+    background: #A8B2B2;
+
+    opacity: 0.8;
+
+    cursor: default;
+}
+
+
+.learning-next-btn {
+    left: 1.5rem;
+}
+
+
+.learning-back-btn {
+    right: 1.5rem;
+}

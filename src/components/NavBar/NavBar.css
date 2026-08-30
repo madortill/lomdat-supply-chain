@@ -1,0 +1,146 @@
+.learning-navbar {
+    position: absolute;
+
+    top: 1rem;
+    right: 1rem;
+
+    width: 13rem;
+
+    display: flex;
+    flex-direction: column;
+    /* gap: 0.5rem; */
+
+    z-index: 20;
+}
+
+
+/* ============================
+   כפתור נושא בסיסי
+============================ */
+
+.navbar-topic {
+    position: relative;
+
+    width: 100%;
+    min-height: 3.5rem;
+
+    border: none;
+    outline: none;
+
+    padding: 0.6rem 1rem;
+
+    background-image: url("../../assets/nav-paper.svg");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+
+    color: #111;
+
+    font-family: "PloniB";
+    font-size: 1.1rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+/* ============================
+   hover
+============================ */
+
+.navbar-topic:not(:disabled):hover {
+    transform: scale(1.03);
+}
+
+
+/* ============================
+   הנושא הנוכחי
+============================ */
+
+.navbar-topic.current {
+    color: #111;
+
+    filter:
+        drop-shadow(0 0 0.25rem rgba(255, 203, 73, 0.95))
+        drop-shadow(0 0 0.65rem rgba(255, 203, 73, 0.8))
+        drop-shadow(0 0 1rem rgba(255, 203, 73, 0.55));
+}
+
+
+/* ============================
+   נושא שהושלם
+============================ */
+
+.navbar-topic.completed {
+    color: #111;
+}
+
+
+/* ============================
+   נושא נעול
+============================ */
+
+.navbar-topic.locked {
+    color: #929292;
+
+    opacity: 0.7;
+
+    cursor: default;
+
+    filter: grayscale(1);
+}
+
+
+/* ============================
+   הטקסט בתוך הכפתור
+============================ */
+
+.navbar-topic-text {
+    display: block;
+
+    width: 100%;
+
+    text-align: center;
+
+    position: relative;
+    z-index: 2;
+}
+
+
+/* ============================
+   וי ירוק
+============================ */
+
+.navbar-check {
+    position: absolute;
+
+    top: -0.55rem;
+    right: -0.3rem;
+
+    width: 2rem;
+    height: 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background-color: #55B95E;
+    color: white;
+
+    font-family: Arial, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+
+    z-index: 3;
+
+    box-shadow:
+        0 0 0.3rem rgba(0, 0, 0, 0.25);
+}
