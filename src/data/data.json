@@ -336,6 +336,30 @@
             "boxiImage": "boxiMoney",
             "contentImage": "managementRoles",
             "requiresCompletion": false
-        }
+        },
+        {
+            "id": 5,
+            "topic": "ourRole",
+            "type": "optionsQuestion",
+          
+            "title": "שאלה - שרשרת האספקה",
+            "question": "מהם שני השלבים העיקריים בניהול שרשרת האספקה בצה״ל?",
+            "instruction": "לחצו על התשובה הנכונה",
+          
+            "answers": [
+              {
+                "id": "answer1",
+                "text": "תכנון דרישות והקצאות + ניהול והזרמות והספקות",
+                "correct": true
+              },
+              {
+                "id": "answer2",
+                "text": "רכישת מוצר + שליחתו לבסיס המיועד",
+                "correct": false
+              }
+            ],
+          
+            "requiresCompletion": true
+          }
     ]
 }

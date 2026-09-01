@@ -13,7 +13,15 @@ import menuItem3 from "../../assets/menu-item-3.svg";
 function OpeningPage() {
   const navigate = useNavigate();
 
-  const [showInstructions, setShowInstructions] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(() => {
+    return sessionStorage.getItem("supplyChain-openingInstructions") === "true";
+  });
+
+  function handleShowInstructions() {
+    sessionStorage.setItem("supplyChain-openingInstructions", "true");
+
+    setShowInstructions(true);
+  }
 
   return (
     <div className="opening-page">
@@ -35,7 +43,7 @@ function OpeningPage() {
 
           <button
             className="opening-start-btn"
-            onClick={() => setShowInstructions(true)}
+            onClick={handleShowInstructions}
           >
             להתחלת הלומדה
           </button>
@@ -153,7 +161,10 @@ function OpeningPage() {
               כפתורי ניווט של העמוד
           ========================= */}
 
-          <button className="opening-page-next-btn" onClick={() => navigate("/learning")}>
+          <button
+            className="opening-page-next-btn"
+            onClick={() => navigate("/learning")}
+          >
             הבא &gt;
           </button>
 

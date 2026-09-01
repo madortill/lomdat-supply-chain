@@ -26,14 +26,6 @@ function BoxiTalk({ data }) {
           {data.title}
         </h1>
 
-            {data.contentImage && (
-              <img
-                src={contentImages[data.contentImage]}
-                alt=""
-                className="boxi-content-image"
-              />
-            )}
-
         <div className="boxi-paragraphs">
           {data.paragraphs?.map((paragraph, index) => (
             <p key={index}>
@@ -41,6 +33,14 @@ function BoxiTalk({ data }) {
             </p>
           ))}
         </div>
+
+            {data.contentImage && (
+              <img
+                src={contentImages[data.contentImage]}
+                alt=""
+                className="boxi-content-image"
+              />
+            )}
 
         {data.infoBox && (
           <div className="boxi-info-box">

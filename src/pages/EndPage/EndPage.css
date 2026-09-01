@@ -1,0 +1,272 @@
+/* =========================================
+   עמוד הסיום
+========================================= */
+
+.end-page {
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+
+    direction: rtl;
+
+    background-image: url("../../assets/background.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* שכבת הכהיה */
+
+.end-page::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.39);
+
+    backdrop-filter: blur(2px);
+
+    z-index: 1;
+}
+
+
+/* =========================================
+   לוגו מדור טי"ל
+========================================= */
+
+.end-til-logo {
+    position: absolute;
+
+    top: 1.2rem;
+    left: 1.2rem;
+
+    width: 5rem;
+    height: auto;
+
+    z-index: 3;
+
+    user-select: none;
+    pointer-events: none;
+}
+
+
+/* =========================================
+   כרטיס הסיום
+========================================= */
+
+.end-content-div {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 35rem;
+    min-height: 25rem;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 2rem 2.5rem;
+
+    background: #FFF5BA;
+
+    border: 0.15rem solid #2E86A6;
+    border-radius: 1.2rem;
+
+    box-shadow:
+        0 0 0.5rem rgba(46, 134, 166, 0.75),
+        0 0 1.4rem rgba(46, 134, 166, 0.65);
+
+    z-index: 2;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   קונפטי
+========================================= */
+
+.confetti-img-end-page {
+    display: block;
+
+    width: 7rem;
+    height: 7rem;
+
+    object-fit: contain;
+
+    margin-bottom: 0.5rem;
+
+    user-select: none;
+    pointer-events: none;
+
+    animation: confetti-pop 0.65s
+        cubic-bezier(0.2, 1.5, 0.4, 1);
+}
+
+
+@keyframes confetti-pop {
+    0% {
+        transform: scale(0.5) rotate(-8deg);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.12) rotate(4deg);
+        opacity: 1;
+    }
+
+    80% {
+        transform: scale(0.96) rotate(-2deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(0);
+    }
+}
+
+
+/* =========================================
+   טקסט
+========================================= */
+
+.end-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 0.4rem;
+
+    margin-bottom: 1.7rem;
+}
+
+
+.end-text1 {
+    margin: 0;
+
+    font-family: "PloniB";
+    font-weight: 700;
+    font-size: 2.3rem;
+
+    color: #2E86A6;
+}
+
+
+.end-text2 {
+    margin: 0;
+
+    font-family: "PloniB";
+    font-weight: 700;
+    font-size: 3rem;
+
+    line-height: 1.1;
+
+    color: #2E86A6;
+}
+
+
+/* =========================================
+   אזור הכפתורים
+========================================= */
+
+.btns-end-page-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 1.5rem;
+}
+
+
+/* =========================================
+   עיצוב בסיס לכל הכפתורים
+========================================= */
+
+.end-btn {
+    border: none;
+    outline: none;
+
+    min-width: 10.5rem;
+
+    padding: 0.25rem 1.2rem;
+
+    border-radius: 1rem;
+
+    font-family: "PloniB";
+    font-size: 1.15rem;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* =========================================
+   לתחילת הלומדה - הכפתור הראשי
+========================================= */
+
+.end-to-start-btn {
+    background: #2EAAD7;
+    color: white;
+
+    box-shadow:
+        0 0 0.5rem rgba(46, 170, 215, 0.6),
+        0 0 1.2rem rgba(46, 170, 215, 0.5);
+}
+
+
+.end-to-start-btn:hover {
+    transform: translateY(-0.12rem) scale(1.04);
+
+    background: #43C4EE;
+
+    box-shadow:
+        0 0 0.7rem rgba(46, 170, 215, 0.8),
+        0 0 1.4rem rgba(46, 170, 215, 0.65);
+}
+
+
+/* =========================================
+   חזרה לחומר - כפתור משני
+========================================= */
+
+.end-to-learning-btn {
+    background: #C5E7EE;
+    color: #2E86A6;
+
+    box-shadow:
+        0 0 0.5rem rgba(46, 134, 166, 0.25),
+        0 0 0.9rem rgba(46, 134, 166, 0.2);
+}
+
+
+.end-to-learning-btn:hover {
+    transform: translateY(-0.12rem) scale(1.04);
+
+    background: #D8F0F5;
+
+    box-shadow:
+        0 0 0.7rem rgba(46, 134, 166, 0.4),
+        0 0 1.1rem rgba(46, 134, 166, 0.3);
+}
+
+
+/* לחיצה */
+
+.end-btn:active {
+    transform: scale(0.97);
+}

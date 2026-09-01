@@ -1,47 +1,58 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./EndPage.css";
 
-import bahad6 from "../../assets/logo-glow.svg";
 import til from "../../assets/til-glow.svg";
-
-import boxCharacter from "../../assets/box-character.svg";
-import menuItem1 from "../../assets/menu-item-1.svg";
-import menuItem2 from "../../assets/menu-item-2.svg";
-import menuItem3 from "../../assets/menu-item-3.svg";
+import confetti from "../../assets/Confetti.svg";
 
 function EndPage() {
   const navigate = useNavigate();
 
-  const [showInstructions, setShowInstructions] = useState(false);
+  function handleBackToLearning() {
+    navigate("/learning");
+  }
+
+  function handleBackToStart() {
+    Object.keys(sessionStorage).forEach((key) => {
+      if (key.startsWith("supplyChain-")) {
+        sessionStorage.removeItem(key);
+      }
+    });
+  
+    navigate("/");
+  }
 
   return (
-    <div className="opening-page">
+    <div className="end-page">
       {/* לוגו מדור טי"ל */}
-      <img src={til} alt="מדור טיל" className="til-logo" />
+      <img src={til} alt='מדור טי"ל' className="end-til-logo" />
 
-      {/* =========================
-          מסך הפתיחה
-      ========================= */}
-      {!showInstructions && (
-        <div className="opening-content">
-          <img src={bahad6} alt='בה"ד 6' className="bahad6-logo-opening-page" />
+      {/* כרטיס סיום */}
+      <div className="end-content-div">
+        <img src={confetti} alt="" className="confetti-img-end-page" />
 
-          <div className="opening-text">
-            <p className="opening-welcome">ברוכים הבאים</p>
+        <div className="end-text">
+          <p className="end-text1">כל הכבוד</p>
 
-            <h1 className="opening-title">ללומדת שרשרת האספקה</h1>
-          </div>
+          <h1 className="end-text2">סיימתם את הלומדה!!</h1>
+        </div>
+
+        <div className="btns-end-page-div">
+          <button
+            className="end-btn end-to-learning-btn"
+            onClick={handleBackToLearning}
+          >
+            &lt; חזרה לחומר
+          </button>
 
           <button
-            className="opening-start-btn"
-            onClick={() => setShowInstructions(true)}
+            className="end-btn end-to-start-btn"
+            onClick={handleBackToStart}
           >
-            להתחלת הלומדה
+            לתחילת הלומדה &gt;
           </button>
         </div>
-      )}
-
+      </div>
     </div>
   );
 }
