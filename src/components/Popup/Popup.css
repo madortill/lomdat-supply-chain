@@ -1,0 +1,152 @@
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(2px);
+
+    z-index: 100;
+}
+
+
+.content-popup {
+    position: relative;
+
+    width: min(44rem, 80vw);
+    min-height: 22rem;
+
+    padding: 2.5rem 3rem;
+
+    border-radius: 1.2rem;
+
+    background: #FFF8D0;
+
+    box-shadow:
+        0 0 0.5rem rgba(46, 134, 166, 0.7),
+        0 0 1.5rem rgba(46, 134, 166, 0.55);
+
+    direction: rtl;
+}
+
+
+.popup-close {
+    position: absolute;
+
+    top: 0.7rem;
+    left: 0.7rem;
+
+    width: 2rem;
+    height: 2rem;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #E9534F;
+    color: white;
+
+    font-size: 1.9rem;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    background 0.2s ease;
+}
+
+.popup-close:hover {
+    transform: scale(1.05);
+    background: #ff635e;
+}
+
+.popup-title {
+    margin: 0 0 1.5rem;
+
+    color: #2E86A6;
+
+    font-family: "PloniB";
+    font-size: 2rem;
+
+    text-align: center;
+}
+
+
+.popup-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 2rem;
+}
+
+
+.popup-text {
+    flex: 1;
+
+    color: #333;
+
+    font-family: "Ploni";
+    font-size: 1.1rem;
+    line-height: 1.6;
+
+    text-align: right;
+}
+
+.popup-text p {
+    margin: 0 0 0.8rem;
+    line-height: 1.5;
+}
+
+.popup-text p:last-child {
+    margin-bottom: 0;
+}
+
+.popup-text strong {
+    font-family: "PloniB";
+    font-weight: 700;
+}
+
+.popup-subtitle {
+    margin: 0 0 0.8rem;
+
+    font-family: "PloniB";
+    font-size: 1.2rem;
+}
+
+
+.popup-image {
+    width: auto;
+    max-width: 34rem;
+    max-height: 15rem;
+
+    object-fit: contain;
+
+    border-radius: 0.5rem;
+}
+
+
+/* תמונה בצד */
+
+.content-popup.side .popup-body {
+    flex-direction: row;
+}
+
+
+/* תמונה למטה */
+
+.content-popup.bottom .popup-body {
+    flex-direction: column;
+}
+
+
+.content-popup.bottom .popup-text {
+    width: 100%;
+}

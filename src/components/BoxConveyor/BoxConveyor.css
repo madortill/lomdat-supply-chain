@@ -1,0 +1,267 @@
+.box-conveyor-page {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+}
+
+
+/* ===============================
+   כותרת
+================================ */
+
+.box-conveyor-heading {
+    position: absolute;
+
+    top: 17%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    text-align: center;
+
+    z-index: 2;
+}
+
+
+.box-conveyor-heading h1 {
+    margin: 0;
+
+    color: #FFF8CF;
+
+    font-family: "PloniB";
+    font-size: 2rem;
+}
+
+
+.box-conveyor-heading p {
+    margin: 0.4rem 0 0;
+
+    color: #FFF8CF;
+
+    font-family: "Ploni";
+    font-size: 1.1rem;
+}
+
+
+/* ===============================
+   המסוע
+================================ */
+
+.conveyor-image {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: auto;
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+
+/* ===============================
+   הארגזים
+================================ */
+
+.conveyor-boxes {
+    position: absolute;
+
+    bottom: 20vh;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: min(95vw, 80rem);
+
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+
+    gap: 0.9rem;
+
+    direction: rtl;
+
+    z-index: 3;
+}
+
+
+.conveyor-box {
+    position: relative;
+
+    border: none;
+    padding: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    font-family: "PloniB";
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.conveyor-box-image-wrapper {
+    position: relative;
+
+    width: 100%;
+}
+
+
+.conveyor-box-image {
+    display: block;
+
+    width: 100%;
+    height: auto;
+}
+
+
+/* ===============================
+   מספר
+================================ */
+
+.conveyor-box-number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 3rem;
+    height: 3rem;
+
+    margin: 0 auto 0.35rem;
+
+    border: 0.12rem solid #FFF5BA;
+    border-radius: 50%;
+
+    color: #FFF5BA;
+    background-color: #fff5ba1f;
+
+    font-family: "Ploni";
+    font-weight: 600;
+    font-size: 1.9rem;
+}
+
+
+/* ===============================
+   שם בתוך הארגז
+================================ */
+
+.conveyor-box-label {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 80%;
+
+    color: #4C2306;
+
+    font-family: "PloniB";
+    font-size: 1.5rem;
+    line-height: 4vh;
+
+    text-align: center;
+}
+
+
+/* ===============================
+   הארגז הפעיל
+================================ */
+
+.conveyor-box.active {
+    animation: boxPulse 1.4s ease-in-out infinite;
+}
+
+
+.conveyor-box.active .conveyor-box-number {
+    border-color: #2eaad7;
+    background: #2EAAD7;
+
+    color: white;
+}
+
+.conveyor-box.active .conveyor-box-number {
+    border-color: #2EAAD7; 
+
+    background-color: rgba(46, 170, 215, 0.1);
+    color: #2EAAD7;
+}
+
+@keyframes boxPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+
+        filter:
+            drop-shadow(0 0 0.25rem rgba(46, 170, 215, 0.5))
+            drop-shadow(0 0 0.5rem rgba(46, 170, 215, 0.4));
+    }
+
+    50% {
+        transform: scale(1.06);
+
+        filter:
+            drop-shadow(0 0 0.5rem rgba(46, 170, 215, 1))
+            drop-shadow(0 0 1rem rgba(46, 170, 215, 0.85));
+    }
+}
+
+
+/* ===============================
+   ארגז שסיימנו
+================================ */
+
+.conveyor-box.completed {
+    cursor: pointer;
+}
+
+
+.conveyor-check {
+    position: absolute;
+
+    top: -0.5rem;
+    right: -0.3rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 1.7rem;
+    height: 1.7rem;
+
+    border-radius: 50%;
+
+    background: #55B95E;
+    color: white;
+
+    font-family: Arial, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+
+/* ===============================
+   ארגזים שעוד לא הגענו אליהם
+================================ */
+
+.conveyor-box.locked {
+    opacity: 0.85;
+
+    cursor: default;
+}

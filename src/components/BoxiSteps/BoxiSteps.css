@@ -1,0 +1,314 @@
+/* =========================================
+   הקומפוננטה הכללית
+========================================= */
+
+.boxi-steps {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 50rem;
+    height: 29rem;
+}
+
+
+/* =========================================
+   בועת הדיבור
+========================================= */
+
+.boxi-steps-speech {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 37rem;
+    box-sizing: border-box;
+
+    padding: 1.7rem 2.5rem 2rem;
+
+    background: #FFF5BA;
+
+    border: 0.15rem solid #2E86A6;
+    border-radius: 1rem;
+
+    box-shadow:
+        0 0 0.5rem rgba(46, 134, 166, 0.75),
+        0 0 1.4rem rgba(46, 134, 166, 0.65);
+
+    text-align: center;
+}
+
+
+/* =========================================
+   המשולש שיוצא מהבועה
+========================================= */
+
+.boxi-steps-speech-arrow {
+    position: absolute;
+
+    bottom: -1.6rem;
+    right: 2rem;
+
+    width: 0;
+    height: 0;
+
+    border-left: 1rem solid transparent;
+    border-right: 1rem solid transparent;
+    border-top: 1.7rem solid #2E86A6;
+
+    filter:
+        drop-shadow(
+            0 0.3rem 0.25rem
+            rgba(46, 134, 166, 0.5)
+        );
+}
+
+
+.boxi-steps-speech-arrow::after {
+    content: "";
+
+    position: absolute;
+
+    left: -0.82rem;
+    top: -1.72rem;
+
+    width: 0;
+    height: 0;
+
+    border-left: 0.82rem solid transparent;
+    border-right: 0.82rem solid transparent;
+    border-top: 1.42rem solid #FFF5BA;
+}
+
+
+/* =========================================
+   כותרת
+========================================= */
+
+.boxi-steps-title {
+    margin: 0;
+
+    color: #2E86A6;
+
+    font-family: "PloniB";
+    font-size: 1.7rem;
+
+    line-height: 1.3;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   אזור שני השלבים
+========================================= */
+
+.boxi-steps-branches {
+    display: flex;
+
+    justify-content: center;
+    align-items: flex-start;
+
+    gap: 6rem;
+
+    margin-top: 0.5rem;
+}
+
+
+/* כל שלב בנפרד */
+
+.boxi-step-branch {
+    position: relative;
+
+    width: 10rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* =========================================
+   החיצים
+========================================= */
+
+.boxi-step-arrow {
+    display: block;
+
+    width: 4.5rem;
+    height: 4.5rem;
+
+    object-fit: contain;
+
+    margin-bottom: 0.5rem;
+
+    pointer-events: none;
+    user-select: none;
+
+    filter:
+        drop-shadow(
+            0 0.1rem 0.1rem
+            rgba(46, 134, 166, 0.15)
+        );
+}
+
+
+.boxi-step-arrow.left {
+    transform: none;
+}
+
+.boxi-step-arrow.right {
+    transform: scaleX(-1);
+}
+
+
+/* =========================================
+   כפתורי השלבים
+========================================= */
+
+.boxi-step-btn {
+    position: relative;
+
+    width: 9.5rem;
+    min-height: 3.2rem;
+
+    padding: 0.45rem 0.8rem;
+
+    border: none;
+    outline: none;
+
+    border-radius: 0.7rem;
+
+    background: #E8B747;
+    color: white;
+
+    font-family: "Ploni";
+    font-size: 1rem;
+
+    line-height: 1.2;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0.15rem 0.25rem
+        rgba(0, 0, 0, 0.12);
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+}
+
+
+/* hover */
+
+.boxi-step-btn:hover {
+    transform: translateY(-0.12rem) scale(1.03);
+
+    background: #F0C358;
+
+    box-shadow:
+        0 0 0.4rem
+        rgba(232, 183, 71, 0.5),
+        0 0.3rem 0.5rem
+        rgba(0, 0, 0, 0.15);
+}
+
+
+/* לחיצה */
+
+.boxi-step-btn:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================
+   שלב שכבר נפתח
+========================================= */
+
+.boxi-step-btn.visited {
+    background: #E8B747;
+}
+
+
+/* =========================================
+   וי ירוק
+========================================= */
+
+.boxi-step-check {
+    position: absolute;
+
+    top: -0.55rem;
+    right: -0.45rem;
+
+    width: 1.6rem;
+    height: 1.6rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #55B95E;
+    color: white;
+
+    font-family: Arial, sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+
+    z-index: 3;
+
+    box-shadow:
+        0 0.1rem 0.2rem
+        rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================
+   הוראת הלחיצה
+========================================= */
+
+.boxi-steps-instruction {
+    margin: 0.8rem 0 0;
+
+    color: #2E86A6;
+
+    font-family: "Ploni";
+    font-size: 1.1rem;
+
+    line-height: 1.45;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   בוקסי
+========================================= */
+
+.boxi-steps-character {
+    position: absolute;
+
+    /*
+      עכשיו המיקום מחושב ביחס לבועה עצמה
+      ולא לפי container בגובה 33rem
+    */
+    top: calc(100% + 2rem);
+    right: -1rem;
+
+    width: 10rem;
+    height: auto;
+
+    z-index: 3;
+
+    filter:
+        drop-shadow(0 0 0.35rem rgba(46, 134, 166, 0.8))
+        drop-shadow(0 0 0.8rem rgba(46, 134, 166, 0.65));
+}

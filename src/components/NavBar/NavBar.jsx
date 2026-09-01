@@ -12,33 +12,34 @@ function Navbar({
     <nav className="learning-navbar">
       {topics.map((topic, index) => {
         const isCurrent = index === currentTopicIndex;
+
         const isCompleted = completedTopics.includes(topic.id);
+
         const isLocked = index > highestUnlockedTopicIndex;
-
-        let status = "";
-
-        if (isLocked) {
-          status = "locked";
-        } else if (isCurrent) {
-          status = "current";
-        } else if (isCompleted) {
-          status = "completed";
-        }
 
         return (
           <button
             key={topic.id}
-            className={`navbar-topic ${status}`}
+            className={`
+              navbar-topic
+              ${isCurrent ? "current" : ""}
+              ${isCompleted ? "completed" : ""}
+              ${isLocked ? "locked" : ""}
+            `}
             disabled={isLocked}
-            onClick={() => !isLocked && onTopicClick(topic.id)}
+            onClick={() => {
+              if (!isLocked) {
+                onTopicClick(topic.id);
+              }
+            }}
           >
-            {isCompleted && !isCurrent && (
-              <span className="navbar-check">✓</span>
-            )}
+            {/*
+              גם אם הוא current,
+              הוי עדיין מוצג.
+            */}
+            {isCompleted && <span className="navbar-check">✓</span>}
 
-            <span className="navbar-topic-text">
-              {topic.title}
-            </span>
+            <span className="navbar-topic-text">{topic.title}</span>
           </button>
         );
       })}

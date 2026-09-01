@@ -1,0 +1,459 @@
+/* =========================================
+   העמוד
+========================================= */
+
+.drag-question-page {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    overflow: hidden;
+
+    direction: rtl;
+}
+
+
+/* החשכה מעל הרקע */
+
+.drag-question-dark-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.52);
+
+    backdrop-filter: blur(1px);
+
+    z-index: 0;
+}
+
+
+/* =========================================
+   חלונית
+========================================= */
+
+.drag-question-card {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: min(46rem, 74vw);
+
+    padding: 2.3rem 2rem 1.7rem;
+
+    background: #FFF5BA;
+
+    border: 0.12rem solid #2E86A6;
+    border-radius: 1rem;
+
+    box-shadow:
+        0 0 0.5rem rgba(46, 134, 166, 0.75),
+        0 0 1.5rem rgba(46, 134, 166, 0.6),
+        0 0.6rem 1.5rem rgba(0, 0, 0, 0.25);
+
+    z-index: 2;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   כותרות
+========================================= */
+
+.drag-question-title {
+    margin: 0;
+
+    color: #2E86A6;
+
+    font-family: "PloniB";
+    font-size: 1.65rem;
+}
+
+
+.drag-question-instruction {
+    margin: 0.6rem 0 1.6rem;
+
+    color: #2E86A6;
+
+    font-family: "Ploni";
+    font-size: 1.1rem;
+}
+
+
+/* =========================================
+   grid משותף
+========================================= */
+
+.drag-targets,
+.drag-answer-bank {
+    display: grid;
+
+    grid-template-columns: repeat(7, 1fr);
+
+    gap: 0.85rem;
+
+    width: 100%;
+    direction: ltr;
+}
+
+
+/* =========================================
+   אזורי היעד האפורים
+========================================= */
+
+.drag-target {
+    position: relative;
+
+    height: 4.8rem;
+
+    border-radius: 0.9rem;
+
+    background: #CACBCD;
+
+    box-sizing: border-box;
+
+    transition:
+        transform 0.18s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+
+    border: 0.12rem solid transparent;
+}
+
+
+/* המספר מעל הכול */
+
+.drag-target-number {
+    position: absolute;
+
+    top: -0.8rem;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 1.7rem;
+    height: 1.7rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #2E86A6;
+    color: white;
+
+    font-family: "PloniB";
+    font-size: 0.9rem;
+
+    z-index: 5;
+
+    pointer-events: none;
+
+    box-shadow:
+        0 0.15rem 0.3rem rgba(0, 0, 0, 0.15);
+}
+
+
+/* =========================================
+   כשגוררים מעל יעד
+========================================= */
+
+.drag-target.drag-over:not(.correct) {
+    transform: translateY(-0.15rem) scale(1.04);
+
+    background: rgba(46, 170, 215, 0.18);
+
+    border-color: #2EAAD7;
+
+    box-shadow:
+        inset 0 0 0 0.1rem rgba(46, 170, 215, 0.18),
+        0 0 0.5rem rgba(46, 170, 215, 0.55),
+        0 0 1rem rgba(46, 170, 215, 0.35);
+}
+
+
+/* =========================================
+   התשובה שנכנסה ליעד
+========================================= */
+
+.drag-answer-in-target {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.4rem;
+
+    border-radius: 0.9rem;
+
+    background: #EABB4D;
+    color: #312413;
+
+    font-family: "Ploni";
+    font-size: 1rem;
+
+    cursor: grab;
+
+    user-select: none;
+
+    box-sizing: border-box;
+
+    animation: answerSnap 0.22s ease-out;
+
+    transition:
+        transform 0.15s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.drag-answer-in-target:active {
+    cursor: grabbing;
+}
+
+
+@keyframes answerSnap {
+    0% {
+        transform: scale(0.88);
+        opacity: 0.55;
+    }
+
+    70% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   בנק תשובות
+========================================= */
+
+.drag-answer-bank {
+    margin-top: 1.8rem;
+    direction: ltr;
+}
+
+
+.drag-answer-home {
+    height: 4.8rem;
+}
+
+
+/* הצהוב לפני גרירה */
+
+.drag-answer {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.4rem;
+
+    box-sizing: border-box;
+
+    border-radius: 0.9rem;
+
+    background: #EABB4D;
+    color: #312413;
+
+    font-family: "Ploni";
+    font-size: 1rem;
+
+    cursor: grab;
+
+    user-select: none;
+
+    box-shadow:
+        0 0.15rem 0.2rem rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.16s ease,
+        box-shadow 0.16s ease,
+        opacity 0.16s ease;
+}
+
+
+.drag-answer:hover {
+    transform: translateY(-0.12rem);
+
+    box-shadow:
+        0 0.3rem 0.5rem rgba(0, 0, 0, 0.16);
+}
+
+
+.drag-answer:active {
+    cursor: grabbing;
+
+    transform:
+        scale(0.96)
+        rotate(-1deg);
+
+    opacity: 0.75;
+}
+
+
+/* =========================================
+   המקום המקורי נשאר!
+========================================= */
+
+.drag-answer-placeholder {
+    width: 100%;
+    height: 100%;
+
+    box-sizing: border-box;
+
+    border-radius: 0.9rem;
+
+    background:
+        rgba(234, 187, 77, 0.12);
+
+    border:
+        0.1rem dashed
+        rgba(234, 187, 77, 0.4);
+}
+
+
+/* =========================================
+   בדיקה - נכון
+========================================= */
+
+.drag-target.correct {
+    background: #BFE3C7;
+
+    border-color: #78BC87;
+
+    box-shadow:
+        0 0 0.5rem rgba(84, 185, 92, 0.35);
+}
+
+
+.drag-target.correct
+.drag-answer-in-target {
+    background: #BFE3C7;
+
+    color: #24552D;
+
+    cursor: default;
+}
+
+
+.drag-target.correct
+.drag-target-number {
+    background: #55B95E;
+}
+
+
+/* =========================================
+   בדיקה - לא נכון
+========================================= */
+
+.drag-target.wrong {
+    background: #F3C4C0;
+
+    border-color: #D9857F;
+
+    box-shadow:
+        0 0 0.45rem rgba(202, 90, 81, 0.3);
+
+    animation: wrongShake 0.3s ease;
+}
+
+
+.drag-target.wrong
+.drag-answer-in-target {
+    background: #F3C4C0;
+
+    color: #763933;
+}
+
+
+.drag-target.wrong
+.drag-target-number {
+    background: #D66D64;
+}
+
+
+@keyframes wrongShake {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-0.18rem);
+    }
+
+    75% {
+        transform: translateX(0.18rem);
+    }
+}
+
+
+/* =========================================
+   כפתור בדיקה
+========================================= */
+
+.drag-check-btn {
+    margin-top: 1.8rem;
+
+    border: none;
+    outline: none;
+
+    padding: 0.35rem 1.5rem;
+
+    border-radius: 0.7rem;
+
+    background: #20AEE4;
+    color: white;
+
+    font-family: "Ploni";
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease,
+        opacity 0.15s ease;
+}
+
+
+.drag-check-btn:hover:not(:disabled) {
+    transform: scale(1.05);
+
+    background: #39BDEB;
+}
+
+
+.drag-check-btn:disabled {
+    opacity: 0.45;
+
+    cursor: default;
+}
+
+
+.drag-check-btn:not(:disabled) {
+    box-shadow:
+        0 0 0.6rem rgba(32, 174, 228, 0.3);
+}

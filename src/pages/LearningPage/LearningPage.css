@@ -127,7 +127,7 @@
 .learning-nav-btn:disabled {
     background: #A8B2B2;
 
-    opacity: 0.8;
+    /* opacity: 0.8; */
 
     cursor: default;
 }
