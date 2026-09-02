@@ -50,23 +50,36 @@
     font-size: 1.1rem;
 }
 
+/* ===============================
+   מסוע + ארגזים כיחידה אחת
+================================ */
+
+.conveyor-stage {
+    position: absolute;
+
+    bottom: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 100%;
+
+    z-index: 1;
+}
+
 
 /* ===============================
    המסוע
 ================================ */
 
 .conveyor-image {
-    position: absolute;
-
-    bottom: 0;
-    left: 0;
+    display: block;
 
     width: 100%;
     height: auto;
 
-    z-index: 1;
-
     pointer-events: none;
+    user-select: none;
 }
 
 
@@ -77,23 +90,26 @@
 .conveyor-boxes {
     position: absolute;
 
-    bottom: 20vh;
-    left: 50%;
+    /*
+      עכשיו הערך הזה מחושב מתוך
+      גובה המסוע עצמו ולא מתוך המסך.
+    */
+    bottom: 72%;
 
+    left: 50%;
     transform: translateX(-50%);
 
-    width: min(95vw, 80rem);
+    width: 90%;
 
     display: grid;
     grid-template-columns: repeat(7, 1fr);
 
-    gap: 0.9rem;
+    gap: clamp(0.4rem, 0.9vw, 0.9rem);
 
     direction: rtl;
 
     z-index: 3;
 }
-
 
 .conveyor-box {
     position: relative;
@@ -185,14 +201,6 @@
 
 .conveyor-box.active {
     animation: boxPulse 1.4s ease-in-out infinite;
-}
-
-
-.conveyor-box.active .conveyor-box-number {
-    border-color: #2eaad7;
-    background: #2EAAD7;
-
-    color: white;
 }
 
 .conveyor-box.active .conveyor-box-number {

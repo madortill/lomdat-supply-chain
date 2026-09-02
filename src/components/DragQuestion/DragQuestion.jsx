@@ -45,8 +45,7 @@ function DragQuestion({ data, onComplete }) {
   );
 
   /*
-    אלה מצבים זמניים בלבד ולכן
-    אין צורך לשמור אותם ב-sessionStorage
+    מידע זמני בזמן גרירה בלבד
   */
   const [draggedItem, setDraggedItem] = useState(null);
   const [dragOverSlot, setDragOverSlot] = useState(null);
@@ -79,6 +78,15 @@ function DragQuestion({ data, onComplete }) {
 
   const allSlotsFilled = Object.keys(placements).length === data.answers.length;
 
+  /*
+    האם כרגע גוררים תשובה
+    מתוך אחד היעדים העליונים?
+  */
+  const canReturnToBank =
+    draggedItem?.fromSlot !== null &&
+    draggedItem?.fromSlot !== undefined &&
+    !isCompleted;
+
   function getAnswerById(answerId) {
     return data.answers.find((answer) => answer.id === answerId);
   }
@@ -87,13 +95,24 @@ function DragQuestion({ data, onComplete }) {
      התחלת גרירה
   ========================================= */
 
-  function handleDragStart(answerId, fromSlot = null) {
+  function handleDragStart(event, answerId, fromSlot = null) {
     if (isCompleted) return;
 
-    // תשובה שכבר נכונה ננעלת
+    /*
+      תשובה שכבר נבדקה כנכונה
+      נשארת נעולה.
+    */
     if (fromSlot !== null && statuses[fromSlot] === "correct") {
+      event.preventDefault();
       return;
     }
+
+    /*
+      נותן לדפדפן להבין שמדובר
+      בפעולת move אמיתית.
+    */
+    event.dataTransfer.effectAllowed = "move";
+    event.dataTransfer.setData("text/plain", answerId);
 
     setDraggedItem({
       answerId,
@@ -102,7 +121,7 @@ function DragQuestion({ data, onComplete }) {
   }
 
   /* =========================================
-     גרירה מעל יעד
+     גרירה מעל יעד עליון
   ========================================= */
 
   function handleDragOver(event, slotNumber) {
@@ -110,16 +129,20 @@ function DragQuestion({ data, onComplete }) {
 
     if (!draggedItem) return;
 
-    // יעד שכבר נכון לא ניתן להחלפה
+    /*
+      יעד שכבר נכון לא ניתן להחלפה.
+    */
     if (statuses[slotNumber] === "correct") {
       return;
     }
+
+    event.dataTransfer.dropEffect = "move";
 
     setDragOverSlot(slotNumber);
   }
 
   /* =========================================
-     שחרור על יעד
+     שחרור על יעד עליון
   ========================================= */
 
   function handleDrop(event, targetSlot) {
@@ -140,13 +163,16 @@ function DragQuestion({ data, onComplete }) {
 
       const answerAlreadyInTarget = next[targetSlot];
 
-      // מפנים את המקום הישן
+      /*
+        אם גררנו מתוך יעד אחר,
+        קודם מפנים אותו.
+      */
       if (fromSlot !== null) {
         delete next[fromSlot];
       }
 
       /*
-        אם גוררים בין שני יעדים מלאים,
+        גרירה בין שני יעדים מלאים:
         התשובות מתחלפות ביניהן.
       */
       if (answerAlreadyInTarget && fromSlot !== null) {
@@ -154,8 +180,8 @@ function DragQuestion({ data, onComplete }) {
       }
 
       /*
-        תשובה שמגיעה מבנק התשובות
-        לא דורסת יעד שכבר מלא.
+        תשובה חדשה מהבנק לא דורסת
+        תשובה שכבר נמצאת ביעד.
       */
       if (answerAlreadyInTarget && fromSlot === null) {
         return prev;
@@ -167,8 +193,8 @@ function DragQuestion({ data, onComplete }) {
     });
 
     /*
-      אם מזיזים תשובה אדומה,
-      מסירים את מצב הבדיקה הישן.
+      אם משנים תשובה אחרי בדיקה,
+      מוחקים את מצב האדום הישן.
     */
     setStatuses((prev) => {
       const next = { ...prev };
@@ -186,6 +212,67 @@ function DragQuestion({ data, onComplete }) {
     setDragOverSlot(null);
   }
 
+  /* =========================================
+     גרירה חזרה לבנק התשובות
+  ========================================= */
+
+  function handleBankDragOver(event) {
+    /*
+      אפשר להחזיר לבנק רק תשובה
+      שכבר נמצאת באזור העליון.
+    */
+    if (!draggedItem || draggedItem.fromSlot === null || isCompleted) {
+      return;
+    }
+
+    event.preventDefault();
+
+    event.dataTransfer.dropEffect = "move";
+  }
+
+  function handleBankDrop(event) {
+    event.preventDefault();
+
+    if (!draggedItem || draggedItem.fromSlot === null || isCompleted) {
+      return;
+    }
+
+    const { fromSlot } = draggedItem;
+
+    /*
+      מוציאים את התשובה מהיעד העליון.
+      ברגע שהיא כבר לא ב-placements,
+      React מציג אותה מחדש במקום
+      המקורי שלה בבנק התשובות.
+    */
+    setPlacements((prev) => {
+      const next = { ...prev };
+
+      delete next[fromSlot];
+
+      return next;
+    });
+
+    /*
+      אם היא הייתה אדומה אחרי בדיקה,
+      מוחקים גם את סטטוס הטעות.
+    */
+    setStatuses((prev) => {
+      const next = { ...prev };
+
+      delete next[fromSlot];
+
+      return next;
+    });
+
+    setDraggedItem(null);
+    setDragOverSlot(null);
+  }
+
+  /* =========================================
+     סיום גרירה
+  ========================================= */
+
   function handleDragEnd() {
     setDraggedItem(null);
     setDragOverSlot(null);
@@ -196,7 +283,9 @@ function DragQuestion({ data, onComplete }) {
   ========================================= */
 
   function handleCheck() {
-    if (!allSlotsFilled || isCompleted) return;
+    if (!allSlotsFilled || isCompleted) {
+      return;
+    }
 
     const newStatuses = {};
 
@@ -221,7 +310,6 @@ function DragQuestion({ data, onComplete }) {
     if (allCorrect) {
       setIsCompleted(true);
 
-      // מודיעים ל-LearningPage
       onComplete?.();
     }
   }
@@ -280,7 +368,9 @@ function DragQuestion({ data, onComplete }) {
                     <div
                       className="drag-answer-in-target"
                       draggable={status !== "correct" && !isCompleted}
-                      onDragStart={() => handleDragStart(answer.id, slotNumber)}
+                      onDragStart={(event) =>
+                        handleDragStart(event, answer.id, slotNumber)
+                      }
                       onDragEnd={handleDragEnd}
                     >
                       {answer.text}
@@ -295,7 +385,14 @@ function DragQuestion({ data, onComplete }) {
             בנק התשובות
         ========================= */}
 
-        <div className="drag-answer-bank">
+        <div
+          className={`
+            drag-answer-bank
+            ${canReturnToBank ? "return-active" : ""}
+          `}
+          onDragOver={handleBankDragOver}
+          onDrop={handleBankDrop}
+        >
           {data.answers
             .slice()
             .reverse()
@@ -305,16 +402,12 @@ function DragQuestion({ data, onComplete }) {
               return (
                 <div key={answer.id} className="drag-answer-home">
                   {isPlaced ? (
-                    /*
-                      המקום המקורי נשאר גם אחרי
-                      שהתשובה נגררה.
-                    */
                     <div className="drag-answer-placeholder" />
                   ) : (
                     <div
                       className="drag-answer"
                       draggable={!isCompleted}
-                      onDragStart={() => handleDragStart(answer.id)}
+                      onDragStart={(event) => handleDragStart(event, answer.id)}
                       onDragEnd={handleDragEnd}
                     >
                       {answer.text}

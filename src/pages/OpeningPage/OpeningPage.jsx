@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./OpeningPage.css";
+import About from "../../components/About/About";
 
 import bahad6 from "../../assets/logo-glow.svg";
 import til from "../../assets/til-glow.svg";
-
 import boxCharacter from "../../assets/box-character.svg";
 import menuItem1 from "../../assets/menu-item-1.svg";
 import menuItem2 from "../../assets/menu-item-2.svg";
@@ -27,6 +27,14 @@ function OpeningPage() {
     <div className="opening-page">
       {/* לוגו מדור טי"ל */}
       <img src={til} alt="מדור טיל" className="til-logo" />
+
+      {!showInstructions && (
+        <>
+          <div className="opening-content"></div>
+
+          <About />
+        </>
+      )}
 
       {/* =========================
           מסך הפתיחה

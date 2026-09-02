@@ -80,27 +80,25 @@ function BoxConveyor({ data, onComplete }) {
     זה גם פותר את הבעיה שהארגז
     השביעי המשיך להבהב.
   */
-    const nextIncompleteIndex = data.boxes.findIndex(
-        (_, index) => !completedBoxes.includes(index)
-      );
-      
-      const activeBoxIndex =
-        nextIncompleteIndex === -1 ? null : nextIncompleteIndex;
-      
-      
-      /* =========================================
+  const nextIncompleteIndex = data.boxes.findIndex(
+    (_, index) => !completedBoxes.includes(index)
+  );
+
+  const activeBoxIndex =
+    nextIncompleteIndex === -1 ? null : nextIncompleteIndex;
+
+  /* =========================================
          בדיקה האם הפעילות כבר הושלמה
       ========================================= */
-      
-      const allBoxesCompleted =
-        completedBoxes.length === data.boxes.length;
-      
-      useEffect(() => {
-        if (allBoxesCompleted) {
-          onComplete?.();
-        }
-      }, [allBoxesCompleted, onComplete]);
-    
+
+  const allBoxesCompleted = completedBoxes.length === data.boxes.length;
+
+  useEffect(() => {
+    if (allBoxesCompleted) {
+      onComplete?.();
+    }
+  }, [allBoxesCompleted, onComplete]);
+
   /* =========================================
      לחיצה על ארגז
   ========================================= */
@@ -170,49 +168,46 @@ function BoxConveyor({ data, onComplete }) {
       </div>
 
       {/* =========================
-          שבעת הארגזים
-      ========================= */}
+    מסוע + ארגזים
+========================= */}
 
-      <div className="conveyor-boxes">
-        {data.boxes.map((box, index) => {
-          const isActive = index === activeBoxIndex;
+      <div className="conveyor-stage">
+        {/* המסוע */}
+        <img src={conveyor} alt="" className="conveyor-image" />
 
-          const isCompleted = completedBoxes.includes(index);
+        {/* שבעת הארגזים */}
+        <div className="conveyor-boxes">
+          {data.boxes.map((box, index) => {
+            const isActive = index === activeBoxIndex;
+            const isCompleted = completedBoxes.includes(index);
+            const isLocked = !isActive && !isCompleted;
 
-          const isLocked = !isActive && !isCompleted;
+            return (
+              <button
+                key={box.id}
+                className={`
+            conveyor-box
+            ${isActive ? "active" : ""}
+            ${isCompleted ? "completed" : ""}
+            ${isLocked ? "locked" : ""}
+          `}
+                onClick={() => handleBoxClick(index)}
+                disabled={isLocked}
+              >
+                <span className="conveyor-box-number">{box.id}</span>
 
-          return (
-            <button
-              key={box.id}
-              className={`
-                conveyor-box
-                ${isActive ? "active" : ""}
-                ${isCompleted ? "completed" : ""}
-                ${isLocked ? "locked" : ""}
-              `}
-              onClick={() => handleBoxClick(index)}
-              disabled={isLocked}
-            >
-              {/* המספר מעל הארגז */}
-              <span className="conveyor-box-number">{box.id}</span>
+                <div className="conveyor-box-image-wrapper">
+                  <img src={boxImage} alt="" className="conveyor-box-image" />
 
-              <div className="conveyor-box-image-wrapper">
-                <img src={boxImage} alt="" className="conveyor-box-image" />
+                  <span className="conveyor-box-label">{box.label}</span>
 
-                <span className="conveyor-box-label">{box.label}</span>
-
-                {isCompleted && <span className="conveyor-check">✓</span>}
-              </div>
-            </button>
-          );
-        })}
+                  {isCompleted && <span className="conveyor-check">✓</span>}
+                </div>
+              </button>
+            );
+          })}
+        </div>
       </div>
-
-      {/* =========================
-          המסוע
-      ========================= */}
-
-      <img src={conveyor} alt="" className="conveyor-image" />
 
       {/* =========================
           Popup

@@ -1,8 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./EndPage.css";
+import About from "../../components/About/About";
 
 import til from "../../assets/til-glow.svg";
+import bahad6 from "../../assets/logo-glow.svg";
 import confetti from "../../assets/Confetti.svg";
 
 function EndPage() {
@@ -18,14 +20,23 @@ function EndPage() {
         sessionStorage.removeItem(key);
       }
     });
-  
+
     navigate("/");
   }
 
   return (
     <div className="end-page">
-      {/* לוגו מדור טי"ל */}
-      <img src={til} alt='מדור טי"ל' className="end-til-logo" />
+      {/* לוגואים */}
+      <div className="learning-logos">
+        <img src={bahad6} alt='בה"ד 6' className="learning-bahad-logo" />
+
+        <img src={til} alt='מדור טי"ל' className="learning-til-logo" />
+      </div>
+
+      {/* אודות */}
+      <>
+        <About />
+      </>
 
       {/* כרטיס סיום */}
       <div className="end-content-div">

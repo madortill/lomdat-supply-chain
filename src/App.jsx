@@ -5,9 +5,9 @@ import OpeningPage from "./pages/OpeningPage/OpeningPage";
 import LearningPage from "./pages/LearningPage/LearningPage";
 import EndPage from "./pages/EndPage/EndPage";
 
-import { preloadAssets } from "./utils/preloadAssets";
-
 import "./css/App.css";
+
+import { preloadAssets } from "./utils/preloadAssets";
 
 function App() {
   const [assetsLoaded, setAssetsLoaded] = useState(false);
